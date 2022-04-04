@@ -1,0 +1,1 @@
+ngrok.exe http -auth="admin:admin"  --region=eu --hostname=technobank.eu.ngrok.io 8080

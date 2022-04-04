@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/static/favicon/site.webmanifest">
+    <title>Registration</title>
+    <link rel="stylesheet" href="/static/css/primitive.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <img src="/static/logo.png" width="200px">
+        <h3>Technobank 2022</h3>
+
+        {% if message %}
+        <p>{{ message }}</p>
+        {% else %}
+        <p>Please enter yout details so we can send You QR code.</p>
+        <form method="post">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" placeholder="Company" required>
+            <label for="full_name">Full Name</label>
+            <input type="text" id="full_name" name="full_name" placeholder="Full Name" required>
+            <label for="position">Position</label>
+            <input type="text" id="position" name="position" placeholder="Position" required>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+            <label for="ticket_type">Type</label>
+            <select id="ticket_type" name="ticket_type" required>
+                <option value="Visitor">Visitor</option>
+                <option value="Exhibitor">Exhibitor</option>
+                <option value="Press">Press</option>
+                <option value="Organizer">Organizer</option>
+            </select>
+            <label for="mobile">Mobile</label>
+            <input type="text" id="mobile" name="mobile" placeholder="Mobile" required>
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" placeholder="Address" required>
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" placeholder="City" required>
+            <button class="accent-button">Register</button>
+        </form>
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>

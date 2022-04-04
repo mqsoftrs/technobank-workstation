@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/static/favicon/site.webmanifest">
+    <title>Find</title>
+    <link rel="stylesheet" href="/static/css/primitive.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <br>
+        <img src="/static/logo.png" width="200px">
+        <h3>Participants</h3>
+        <p>Please enter Company so we could find all participants from that Company.</p>
+        <form method="post">
+            <input type="text" name="company" placeholder="Company" required>
+            <button class="accent-button">Find</button>
+        </form>
+        {% if clients %}
+        <p>Displaing results for {{ company_to_find }}</p>
+        <div class="contain-table">
+            <table>
+                <thead>
+                    <tr>
+                        {% for key in ["full name", "email", "ticket type", "position"] %}
+                        <th>{{ key }}</th>
+                        {% endfor %}
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for client in clients %}
+                    <tr>
+                        <form>
+                            {% for key in ["full_name", "email", "ticket_type", "position"] %}
+                            <td><input name={{ key }} value={{ client[key] }} {{ "disabled" if key == 'email' }}></td>
+                            {% endfor %}
+                            <td>
+                                <button 
+                                    class="round-button" 
+                                    formaction={{ 'https://technobank.eu.ngrok.io/' ~ client['code'] ~ '/print' }} 
+                                    formmethod="get">Print</button>
+                                <button
+                                    class="round-button"
+                                    formenctype="application/x-www-form-urlencoded"
+                                    formaction={{ 'https://technobank.eu.ngrok.io/' ~ client['code'] ~ '/edit' }} 
+                                    formmethod="post">Save</button>
+                            </td>
+                        </form>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p>No results to display..</p>
+        {% endif %}
+    </div>
+
+</body>
+
+</body>
+
+</html>

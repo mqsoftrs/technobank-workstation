@@ -1,0 +1,19 @@
+    def preview(self, index=0):
+        '''
+        Opens rendered preview using Labelary API.
+
+        Not all commands are supported, see http://labelary.com for more information.
+        '''
+        try:
+            url = 'http://api.labelary.com/v1/printers/%idpmm/labels/%fx%f/%i/' % (
+                self.dpmm, self.width/25.4, self.height/25.4, index)
+            files = {'file': self.dumpZPL()}
+            headers = {'Accept': 'application/epl'}
+            res = requests.post(url, headers = headers, files = files, stream = True)
+            if res.status_code == 200:
+                res.raw.decode_content = True
+                return res.raw
+            return None
+        except IOError:
+            raise Exception("Invalid preview received, mostlikely bad ZPL2 code uploaded.")
+

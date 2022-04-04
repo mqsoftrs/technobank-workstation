@@ -1,0 +1,12 @@
+fastapi[all]
+qrcode
+pillow
+postmarker
+jinja2
+python-multipart
+pandas
+autopep8
+ipython
+ipdb
+openpyxl
+zpl
